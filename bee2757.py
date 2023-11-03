@@ -1,14 +1,21 @@
-while True:
-    try:
-        A = int(input())
-        B = int(input())
-        C = int(input())
+def is_lucky_ticket(ticket):
+    n = len(ticket)
+    if n % 2 == 0:
+        half = n // 2
+        first_half = ticket[:half]
+        second_half = ticket[half:]
+        if sum(map(int, first_half)) == sum(map(int, second_half)):
+            return True
 
-        # Output in the specified format
-        print(f"A = {A}, B = {B}, C = {C}")
-        print(f"A = {A:10}, B = {B:10}, C = {C:10}")
-        print(f"A = {A:010}, B = {B:010}, C = {C:010}")
-        print(f"A = {A:<10}, B = {B:<10}, C = {C:<10}")
 
-    except EOFError:
-        break
+n = int(input())
+tickets = input().split()
+list_of_tickets = list(tickets)
+count = 0
+
+for element in tickets:
+    for i in tickets:
+        if is_lucky_ticket(element + i):
+            count = count + 1
+
+print(count)
